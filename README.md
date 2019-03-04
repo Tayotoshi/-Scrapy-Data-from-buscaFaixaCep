@@ -2,7 +2,7 @@
 
 Pré Requisitos para usar o programa:
 
-- Este programa é executavel apenas em máquinas Linux.
+- Este programa foi criado para ser executado em máquinas Linux. (Embora tendo como adaptar para Windows)
 
 - Este programa funciona apenas no navegador FireFox.
 
