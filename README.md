@@ -1,6 +1,6 @@
 # Scrapy_Data_From_buscaFaixaCEP
 
-- Pré Requisitos para usar o programa.
+Pré Requisitos para usar o programa:
 
 - Este programa é executavel apenas em máquinas Linux.
 
