@@ -67,9 +67,13 @@ class Page:
         pagina_HTML()
 
     @staticmethod
-    # Muda a pagina para a proxima
+    # Muda a pagina para a proxima se a UF tiver mais que cinquenta registros.
     def mudar_pagina(driver):
-        driver.find_element_by_link_text("[ Próxima ]").click()
+        try:
+            driver.find_element_by_link_text("[ Próxima ]").click()
+        except:
+            print ('Esse estado tem numero de registros menor que 50 \nArmazenamos o que foi encontrado da primeira pagina\nRetornando para fazer uma nova consulta...')
+            Page.inicia_nova_consulta(ff)
 
 
 # Pega o documento HTML da pagina e disseca ele até as td
