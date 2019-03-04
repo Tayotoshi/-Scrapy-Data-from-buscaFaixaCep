@@ -1,10 +1,10 @@
 # Scrapy_Data_From_buscaFaixaCEP
 
-- Pré Requisitos para usar o programa --
+- Pré Requisitos para usar o programa.
 
-Este programa é executavel apenas em máquinas Linux.
+- Este programa é executavel apenas em máquinas Linux.
 
-Este programa funciona apenas no navegador FireFox.
+- Este programa funciona apenas no navegador FireFox.
 
 - Ter o framework selenium instalado.
 
