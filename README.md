@@ -16,4 +16,4 @@ Comando para a instalação: apt-get install python3-bs4
 
 - Ao baixar o arquivo, verificar se o geckodriver tem permissão para ser executado, se não tiver, utilize o  comando abaixo.
 
-Comando para conseder permissão: chmod 777 geckodriver
+Comando para conceder permissão: chmod 777 geckodriver
