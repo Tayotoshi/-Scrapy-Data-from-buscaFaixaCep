@@ -47,7 +47,7 @@ class Page:
     def inicia_nova_consulta(driver):
         print('Registros da UF coletados, voltando para fazer uma nova consulta...')
         driver.find_element_by_link_text("[ Nova Consulta ]").click()
-        g.estado()
+        g.navegar()
 
     @staticmethod
     # Pega a tabela onde estão os registros
@@ -102,6 +102,6 @@ def continua_procurando (lista_registros):
             Page.inicia_nova_consulta(ff)
 
 
-ff = webdriver.Firefox(executable_path='./geckodriver')
+ff = webdriver.Chrome(executable_path='./chromedriver')
 g = Page(ff)
 g.navegar()
