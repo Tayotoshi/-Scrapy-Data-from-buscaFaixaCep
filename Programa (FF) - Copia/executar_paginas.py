@@ -81,22 +81,22 @@ def limpa_registros(td):
     cep_inicial = 1
     cidade_inicial = 0
     lista_registros = []
-    for cada_registro in range(0, len(td), 4):
+    for cada_registro in range(0, len(td), 2):
         lista_registros.append(td[cidade_inicial].text)
         lista_registros.append(td[cep_inicial].text)
-        cidade_inicial += 4
-        cep_inicial += 4
+        cidade_inicial += 2
+        cep_inicial += 2
     gerando_arquivo_json(lista_registros)
     continua_procurando(lista_registros)
 
 #Se registros.txt ainda não tiver 100 registros, essa função ira ser ativa e registrará mais 50 registros.
 def continua_procurando (lista_registros):
     texto = lista_registros
-    if len(texto)<100:
+    if len(texto)<200:
         Page.mudar_pagina(gc)
         pagina_HTML(0)
     else:
-        if len(texto)>=100:
+        if len(texto)>=200:
             Page.inicia_nova_consulta(gc)
 
 
