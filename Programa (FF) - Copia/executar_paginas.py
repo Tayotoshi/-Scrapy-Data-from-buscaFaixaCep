@@ -102,6 +102,6 @@ def continua_procurando (lista_registros):
             Page.inicia_nova_consulta(ff)
 
 
-ff = webdriver.Firefox(executable_path'./geckodriver')
+ff = webdriver.Firefox(executable_path='./geckodriver')
 g = Page(ff)
 g.navegar()
