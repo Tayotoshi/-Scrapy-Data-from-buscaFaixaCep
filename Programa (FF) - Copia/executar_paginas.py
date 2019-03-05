@@ -1,7 +1,9 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup as bs
 from pegar_registros import *
+
 class Page:
+    
     #Variaveis que possam ser utilizadas no programa
     def __init__(self, driver):
         self.driver = driver
@@ -9,7 +11,6 @@ class Page:
         self.search_bar = 'f1col'
         self.btn_search = 'btn2'
         self.table = 'tmptabela'
-
 
     # Inicia a navegação até o URL requisitado
     def navegar(self):
@@ -32,8 +33,6 @@ class Page:
                 break
             else:
                 print('OPÇÃO INVÁLIDA! DIGITE UM NÚMERO VALIDO POR FAVOR [0] ou [1]')
-
-
 
     # Pesquisa pelo estado e clica em buscar.
     def pesquisar(self, word='None'):
@@ -65,7 +64,6 @@ class Page:
         except:
             print ('Esse estado tem numero de registros menor que 100 \nArmazenamos o que foi encontrado da primeira pagina.')
             Page.inicia_nova_consulta(gc)
-
 
 # Pega o documento HTML da pagina e disseca ele até as chegar nas tags <td>
 def pagina_HTML(qual_tabela=1):
