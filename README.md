@@ -14,6 +14,10 @@ Comando para a instalação: pip3 install -U selenium
 
 Comando para a instalação: apt-get install python3-bs4 
 
+- Ter a biblioteca JSONL instalada.
+
+Comando para a instalação: pip install jsonlines
+
 - Ao baixar o arquivo, verificar se o geckodriver tem permissão para ser executado, se não tiver, utilize o  comando abaixo.
 
 Comando para conceder permissão: chmod 777 geckodriver
