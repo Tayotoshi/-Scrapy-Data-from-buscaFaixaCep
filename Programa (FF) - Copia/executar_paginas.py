@@ -28,7 +28,7 @@ class Page:
             elif escolha == 1:
                 print (20*'-=')
                 print ('FINALIZANDO PROGRAMA!')
-                ff.quit()
+                gc.quit()
                 break
             else:
                 print('OPÇÃO INVÁLIDA! DIGITE UM NÚMERO VALIDO POR FAVOR [0] ou [1]')
@@ -64,13 +64,13 @@ class Page:
             driver.find_element_by_link_text("[ Próxima ]").click()
         except:
             print ('Esse estado tem numero de registros menor que 100 \nArmazenamos o que foi encontrado da primeira pagina.')
-            Page.inicia_nova_consulta(ff)
+            Page.inicia_nova_consulta(gc)
 
 
 # Pega o documento HTML da pagina e disseca ele até as chegar nas tags <td>
 def pagina_HTML(qual_tabela=1):
     qual_tabela=qual_tabela
-    html=ff.page_source
+    html=gc.page_source
     correio_pagina = bs(html, 'html.parser')
     tabela = correio_pagina.find_all('table')
     tbody = tabela[qual_tabela].find('tbody')
@@ -95,13 +95,13 @@ def limpa_registros(td):
 def continua_procurando (lista_registros):
     texto = lista_registros
     if len(texto)<100:
-        Page.mudar_pagina(ff)
+        Page.mudar_pagina(gc)
         pagina_HTML(0)
     else:
         if len(texto)>=100:
-            Page.inicia_nova_consulta(ff)
+            Page.inicia_nova_consulta(gc)
 
 
-ff = webdriver.Chrome(executable_path='./chromedriver')
-g = Page(ff)
+gc = webdriver.Chrome(executable_path='./chromedriver')
+g = Page(gc)
 g.navegar()
