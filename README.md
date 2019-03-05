@@ -20,4 +20,4 @@ Comando para a instalação: pip3 install -U jsonlines
 
 - Ao baixar o arquivo, verificar se o googlechromium tem permissão para ser executado, se não tiver, utilize o  comando abaixo.
 
-Comando para conceder permissão: chmod 777 googlechromium
+Comando para conceder permissão: chmod 777 chromedriver
