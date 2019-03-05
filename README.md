@@ -16,7 +16,7 @@ Comando para a instalação: apt-get install python3-bs4
 
 - Ter a biblioteca JSONL instalada.
 
-Comando para a instalação: pip install jsonlines
+Comando para a instalação: pip install -U jsonlines
 
 - Ao baixar o arquivo, verificar se o geckodriver tem permissão para ser executado, se não tiver, utilize o  comando abaixo.
 
