@@ -1,7 +1,9 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup as bs
 from pegar_registros import *
+
 class Page:
+    
     #Variaveis que possam ser utilizadas no programa
     def __init__(self, driver):
         self.driver = driver
@@ -10,28 +12,27 @@ class Page:
         self.btn_search = 'btn2'
         self.table = 'tmptabela'
 
-
     # Inicia a navegação até o URL requisitado
     def navegar(self):
         self.driver.get(self.url)
         Page.estado(self)
 
     def estado(self):
-        escolha=0
-        while escolha != 1:
-            print (20*'-=')
-            print('O que deseja fazer?\n[0] Para pesquisar por uma UF\n[1] Para encerrar o programa')
-            escolha = int(input('Escolha [0] ou [1]: '))
+        print(20 * '-=')
+        print('Escolha uma opção: \n[0] Para pesquisar por uma UF\n[1] Para encerrar o programa')
+        escolha = int(input('Escolha [0] ou [1]: '))
+        while True:
             if escolha == 0:
                 uf=input(str('Insira a sigla da UF (Unidade da Federação), por exemplo: SC,SP,RS... : ')).upper()
                 Page.pesquisar(self, uf)
+                return uf
             elif escolha == 1:
                 print (20*'-=')
                 print ('FINALIZANDO PROGRAMA!')
                 ff.quit()
+                break
             else:
                 print('OPÇÃO INVÁLIDA! DIGITE UM NÚMERO VALIDO POR FAVOR [0] ou [1]')
-
 
     # Pesquisa pelo estado e clica em buscar.
     def pesquisar(self, word='None'):
@@ -43,20 +44,9 @@ class Page:
 
     @staticmethod
     def inicia_nova_consulta(driver):
-        escolha = 0
-        while escolha != 1:
-            print(20 * '-=')
-            print('Deseja fazer uma nova consulta a uma UF?\n[0] SIM\n[1] NÃO')
-            escolha = int(input('Escolha [0] ou [1]: '))
-            if escolha == 0:
-                driver.find_element_by_link_text("[ Nova Consulta ]").click()
-                g.navegar()
-            elif escolha == 1:
-                print(20 * '-=')
-                print('FINALIZANDO PROGRAMA!')
-                ff.quit()
-            else:
-                print ('OPÇÃO INVÁLIDA! DIGITE UM NÚMERO VALIDO POR FAVOR [0] ou [1]')
+        print('Registros da UF coletados, voltando para fazer uma nova consulta...')
+        driver.find_element_by_link_text("[ Nova Consulta ]").click()
+        g.estado()
 
     @staticmethod
     # Pega a tabela onde estão os registros
@@ -67,16 +57,15 @@ class Page:
         pagina_HTML()
 
     @staticmethod
-    # Muda a pagina para a proxima se a UF tiver mais que cinquenta registros.
+    # Muda a pagina para a proxima
     def mudar_pagina(driver):
         try:
             driver.find_element_by_link_text("[ Próxima ]").click()
         except:
-            print ('Esse estado tem numero de registros menor que 50 \nArmazenamos o que foi encontrado da primeira pagina\nRetornando para fazer uma nova consulta...')
+            print ('Esse estado tem numero de registros menor que 100 \nArmazenamos o que foi encontrado da primeira pagina.')
             Page.inicia_nova_consulta(ff)
 
-
-# Pega o documento HTML da pagina e disseca ele até as td
+# Pega o documento HTML da pagina e disseca ele até as chegar nas tags <td>
 def pagina_HTML(qual_tabela=1):
     qual_tabela=qual_tabela
     html=ff.page_source
@@ -97,9 +86,8 @@ def limpa_registros(td):
         lista_registros.append(td[cep_inicial].text)
         cidade_inicial += 4
         cep_inicial += 4
-    cria_e_salva_arquivo(lista_registros)
+    gerando_arquivo_json(lista_registros)
     continua_procurando(lista_registros)
-
 
 #Se registros.txt ainda não tiver 100 registros, essa função ira ser ativa e registrará mais 50 registros.
 def continua_procurando (lista_registros):
