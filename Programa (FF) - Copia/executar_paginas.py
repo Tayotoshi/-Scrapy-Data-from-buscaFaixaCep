@@ -4,7 +4,7 @@ from pegar_registros import *
 
 class Page:
 
-    # Variaveis que possam ser utilizadas no programa
+    # Função construtora do programa, que ira armazenar variaveis self, que irão orientar o selenium na interação com o site.
     def __init__(self, driver):
         self.driver = driver
         self.url = 'http://www.buscacep.correios.com.br/sistemas/buscacep/buscaFaixaCEP.cfm'
@@ -16,7 +16,8 @@ class Page:
     def navegar(self):
         self.driver.get(self.url)
         Page.estado(self)
-
+        
+    #Menu de opções, onde o usuario ira decidir a UF a ser pesquisada.
     def estado(self):
         escolha=0
         while escolha !=1:
@@ -34,37 +35,38 @@ class Page:
             else:
                 print('OPÇÃO INVÁLIDA! DIGITE UM NÚMERO VALIDO POR FAVOR [0] ou [1]')
 
-    # Pesquisa pelo estado e clica em buscar.
+    # Função responsável por selecionar pela UF requisitada e clicar e buscar.
     def pesquisar(self, word='None'):
         self.driver.find_element_by_class_name(
             self.search_bar).send_keys(word)
         self.driver.find_element_by_class_name(
             self.btn_search).click()
         Page.pegar_tabelas(self, t=1)
-
+    
+    # Função responsável por clicar na opção "Nova Consulta"
     @staticmethod
     def inicia_nova_consulta(driver):
         print('Registros achados coletados, retornando para fazer uma nova consulta...')
         driver.find_element_by_link_text("[ Nova Consulta ]").click()
         g.navegar()
 
+     # Função responsável por pegar a tabela em HTML onde os registros estão.   
     @staticmethod
-    # Pega a tabela onde estão os registros
     def pegar_tabelas(self, t=1):
         tabelas = (self.driver.find_elements_by_class_name(
             self.table))
         tabela = tabelas[t]
         pagina_HTML()
-
+    
+    #Função responsável por tentar clicar na opção "Próxima" quando possivél, quando não for possivél, iniciará uma nova consulta.
     @staticmethod
-    # Muda a pagina para a proxima
     def mudar_pagina(driver):
         try:
             driver.find_element_by_link_text("[ Próxima ]").click()
         except:
             Page.inicia_nova_consulta(gc)
 
-# Pega o documento HTML da pagina e disseca ele até as chegar nas tags <td>
+# Função recebe a tabela onde estão os registros, fica responsável por pegar todo documento o HTML da pagina, e "dissecar" ele até as chegar nas tags <td>, onde é chamado a função limpa_registros.
 def pagina_HTML(qual_tabela=1):
     html = gc.page_source
     correio_pagina = bs(html, 'html.parser')
@@ -74,7 +76,7 @@ def pagina_HTML(qual_tabela=1):
     limpa_registros(td)
     return td
 
-# Pega os registros cidade e CEP de dentro da tabela, retira as tags HTML os armazena em uma lista, e logo após armazena em um arquivo.txt.
+# Função recebe as tags <td> cruas ,fica responsável por retirar apenas o texto das tags <td>, armazenando-as em uma lista que é mandada para a função gerando_arquivo_json(),e depois continua procurando por registros até acabar com a função continua_procurando().
 def limpa_registros(td):
     cep_inicial = 1
     cidade_inicial = 0
@@ -88,8 +90,8 @@ def limpa_registros(td):
     continua_procurando(lista_registros)
     return lista_registros
 
-# Se registros.txt ainda não tiver 100 registros, essa função ira ser ativa e registrará mais 50 registros.
-def continua_procurando(lista_registros):
+# Função responsável por ficar "infinitamente" trocando a página e armazenando os registros que encontrar.
+def continua_procurando():
     while True:
         Page.mudar_pagina(gc)
         pagina_HTML(0)
