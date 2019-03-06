@@ -1,6 +1,6 @@
 import jsonlines
 
-#Armazena os registros em um arquivo JSONL
+#Função recebe a lista de registros, e as armazena em um arquivo JSONL
 def gerando_arquivo_json(lista_registros):
     cep_inicial = 1
     cidade_inicial = 0
