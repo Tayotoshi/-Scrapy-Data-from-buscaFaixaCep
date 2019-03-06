@@ -26,7 +26,7 @@ Comando para conceder permissão: **chmod 777 chromedriver**
 
 ## Como rodar:
 
- Execute o programa no seu console, após isso o seu navegador GoogleChrome ira iniciar e você sera redirecionado para o site dos correios na parte de busca faixa de CEP, dando começo ao programa. Após isso o programa ira pedir para que você selecione uma das opções, digitando **[0]** ou **[1]**, onde **[0]** seria a opção para pesquisar por uma UF, e **[1]** para encerrar o programa, selecione a opção **[0]** para pesquisar por uma UF, após isso, o programa ira pedir para você declarar a UF que quer fazer o Scrapy e coletar os registros, digite a UF desejável (apenas abreviaçoes,ex:SC,SP,ES...} e aperte enter, após isso ocorrera a coleta de todos os registros da UF requisitada, e você voltará a parte de opções, repita o processo quantas vezes quiser, e depois apenas digite **[1]** para encerrar o programa.
+ Execute o programa **executar_paginas.py** no seu console, após isso o seu navegador GoogleChrome ira iniciar e você sera redirecionado para o site dos correios na parte de busca faixa de CEP, dando começo ao programa. Após isso o programa ira pedir para que você selecione uma das opções, digitando **[0]** ou **[1]**, onde **[0]** seria a opção para pesquisar por uma UF, e **[1]** para encerrar o programa, selecione a opção **[0]** para pesquisar por uma UF, após isso, o programa ira pedir para você declarar a UF que quer fazer o Scrapy e coletar os registros, digite a UF desejável (apenas abreviaçoes,ex:SC,SP,ES...} e aperte enter, após isso ocorrera a coleta de todos os registros da UF requisitada, e você voltará a parte de opções, repita o processo quantas vezes quiser, e depois apenas digite **[1]** para encerrar o programa.
  
  ## Erro ao encerrar o programa
  
