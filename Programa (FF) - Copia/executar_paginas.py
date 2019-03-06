@@ -87,7 +87,7 @@ def limpa_registros(td):
         cidade_inicial += 2
         cep_inicial += 2
     gerando_arquivo_json(lista_registros)
-    continua_procurando(lista_registros)
+    continua_procurando()
     return lista_registros
 
 # Função responsável por ficar "infinitamente" trocando a página e armazenando os registros que encontrar.
