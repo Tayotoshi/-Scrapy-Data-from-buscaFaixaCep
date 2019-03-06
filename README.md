@@ -14,7 +14,7 @@ Comando para a instalação: pip3 install -U selenium
 
 Comando para a instalação: apt-get install python3-bs4 
 
-- Ter a biblioteca JSONL instalada.
+- Ter a biblioteca jsonlines instalada.
 
 Comando para a instalação: pip3 install -U jsonlines
 
